@@ -31,6 +31,8 @@ set(PRECISION 2 CACHE STRING
 
 option(GPUACCELERATED "Whether to program will run on GPU. Set to 1 to enable" 0)
 
+option(VECTORIZED "Whether to utilize AVX support" 0)
+
 set(GPU_COMPUTE_CAPABILITY 30 CACHE STRING "GPU hardware dependent, lookup at https://developer.nvidia.com/cuda-gpus. Write without fullstop")
 
 
@@ -41,6 +43,7 @@ set(GPU_COMPUTE_CAPABILITY 30 CACHE STRING "GPU hardware dependent, lookup at ht
 
 # Show the user their settings
 message(STATUS "Precision is ${PRECISION}")
+message(STATUS "AVX acceleration is ${VECTORIZED}")
 message(STATUS "GPU acceleration is ${GPUACCELERATED}")
 message(STATUS "OMP acceleration is ${MULTITHREADED}")
 message(STATUS "MPI distribution is ${DISTRIBUTED}")
@@ -120,6 +123,11 @@ endif()
 # ----- SET COMPILER FLAGS ----------------------------------------------------
 # -----------------------------------------------------------------------------
 
+# ----- AVX -------------------------------------------------------------------
+
+if (VECTORIZED)
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mavx2 -mtune=native")
+endif()
 
 # ----- OPENMP ----------------------------------------------------------------
 

@@ -32,6 +32,8 @@
 # ifndef QUEST_H
 # define QUEST_H
 
+#include <stdbool.h>
+
 # include "QuEST_precision.h"
 
 // prevent C++ name mangling
@@ -6864,6 +6866,24 @@ void applyQFT(Qureg qureg, int* qubits, int numQubits);
  * @author Tyson Jones
  */
 void applyProjector(Qureg qureg, int qubit, int outcome);
+
+typedef unsigned long long ull;
+
+void initH(Qureg qureg);
+
+ull* init1DGraph(Qureg qureg);
+void addEdgeTo1DGraph(Qureg qureg, ull* graph, int qubit1, int qubit2);
+void free1DGraph(ull* graph);
+
+bool* init2DGraph(Qureg qureg);
+void addEdgeTo2DGraph(Qureg qureg, bool* graph, qreal *weights, int qubit1, int qubit2, qreal weight);
+void free2DGraph(bool* graph);
+
+qreal* initWeights(Qureg qureg);
+void freeWeights(qreal *weights);
+
+void rotationCompressionWeighted(Qureg qureg, qreal angle, bool *graph, qreal *weights, bool isFirstLayer);
+void rotationCompressionUnweighted(Qureg qureg, qreal angle, ull *graph, bool isFisrtLayer);
 
 // end prevention of C++ name mangling
 #ifdef __cplusplus
