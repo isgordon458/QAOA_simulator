@@ -1301,8 +1301,8 @@ void statevec_createQureg(Qureg *qureg, int numQubits, QuESTEnv env)
     validateMemoryAllocationSize(numAmpsPerRank, __func__);
 
     size_t arrSize = (size_t) (numAmpsPerRank * sizeof(*(qureg->stateVec.real)));
-    assert(posix_memalign((void **)&qureg->stateVec.real, 32, arrSize) == 0);
-    assert(posix_memalign((void **)&qureg->stateVec.imag, 32, arrSize) == 0);
+    assert(posix_memalign((void **)&qureg->stateVec.real, 64, arrSize) == 0);
+    assert(posix_memalign((void **)&qureg->stateVec.imag, 64, arrSize) == 0);
     if (env.numRanks>1){
         qureg->pairStateVec.real = malloc(arrSize);
         qureg->pairStateVec.imag = malloc(arrSize);

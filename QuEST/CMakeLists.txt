@@ -315,6 +315,17 @@ else ()
     )
 endif()
 
+if (VECTORIZED)
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=native -mtune=native")
+  set(AOCL_PATH "/opt/AMD/aocl/aocl-linux-gcc-4.2.0/gcc")
+  target_include_directories(QuEST PUBLIC "${AOCL_PATH}/include")
+  target_link_directories(QuEST PUBLIC "${AOCL_PATH}/lib")
+  target_link_libraries(QuEST PUBLIC -lalm)
+  target_link_libraries(QuEST PUBLIC -lm)
+  target_link_libraries(QuEST PUBLIC -laoclutils)
+  target_link_libraries(QuEST PUBLIC -lstdc++)
+endif()
+
 # ----- Location of header files ----------------------------------------------
 
 target_include_directories(QuEST 

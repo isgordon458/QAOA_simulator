@@ -29,7 +29,7 @@ void rotationCompressionWeighted(Qureg qureg, qreal angle, bool *graph, qreal *w
 
         qreal contracted_rzz[2];
 
-        sincosf(sum * angle / 2.0, &contracted_rzz[1], &contracted_rzz[0]);
+        sincos(sum * angle / 2.0, &contracted_rzz[1], &contracted_rzz[0]);
 
         if (isFirstLayer)
         {
@@ -70,7 +70,7 @@ void rotationCompressionUnweighted(Qureg qureg, qreal angle, ull *graph, bool is
         }
 
         qreal contracted_rzz[2];
-        sincosf((2 * Cp - numGates) * angle / 2, &contracted_rzz[1], &contracted_rzz[0]);
+        sincos((2 * Cp - numGates) * angle / 2, &contracted_rzz[1], &contracted_rzz[0]);
 
         if (isFirstLayer)
         {

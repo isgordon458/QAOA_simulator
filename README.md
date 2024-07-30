@@ -1,5 +1,13 @@
 # QAOA Simulator
 
+### Preliminary Setup
+
+1. This repository uses AMD's AOCL to perform the AVX sincos function
+    For AMD devices, you need to install the AOCL library first.  
+    You can find it here: [https://www.amd.com/zh-tw/developer/aocl.html]()
+
+2. After installation, modify Line 320 in [CMakeLists.txt](./QuEST/CMakeLists.txt) to set `AOCL_PATH` to your AOCL installation path.
+
 ### Getting started
 
 1. Clone this repository and navigate to the corresponding directory.

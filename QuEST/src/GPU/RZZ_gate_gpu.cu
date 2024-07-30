@@ -7,7 +7,7 @@ __managed__ qreal H;
 
 void initH(Qureg qureg) {
     int numQubits = qureg.numQubitsInStateVec;
-    H = powf(1.f/sqrt(2.f), (float)numQubits);
+    H = pow(1./sqrt(2.), numQubits);
 }
 
 ull* init1DGraph(Qureg qureg) {
